@@ -24,7 +24,7 @@ For each story generate:
 - Overview: 1-2 neutral sentences summarizing the key event.
 - Highlights: 3-5 bullet points with facts only (no opinions, no hallucinations; stick to provided content).
 - URL(s): list of urls that touched the story
-- Image URL: one of the image_urls from the articles related to the story.
+- Image URL: one of the image_urls from the articles related to the story, if available.
 
 Safeguards: Be factual, neutral, avoid biases (political, cultural). If content is unclear, default to description. Output structured JSON: {{"stories": [{{"overview": "...", "highlights": ["...", "..."], "urls": ["...", "..."], "image_url": "..."}}], "total_articles": X, "sources": Y}}.
 
