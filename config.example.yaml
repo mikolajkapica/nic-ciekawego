@@ -1,0 +1,16 @@
+rss_feeds:
+  - url: http://feeds.bbci.co.uk/news/rss.xml
+    name: BBC
+  - url: https://wiadomosci.onet.pl/feed
+    name: Onet
+  - url: https://www.france24.com/en/rss
+    name: France24
+
+recipients:
+  - johnsmith@gmail.com
+
+llm_model: openrouter/sonoma-sky-alpha
+
+email_subject: "Top 5 Wieści Dnia: Podsumowanie z {date}"
+
+script_version: "1.0.0"
