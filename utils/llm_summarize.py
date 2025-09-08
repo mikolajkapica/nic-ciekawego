@@ -28,6 +28,8 @@ For each story generate:
 
 Safeguards: Be factual, neutral, avoid biases (political, cultural). If content is unclear, default to description. Output structured JSON: {{"stories": [{{"overview": "...", "highlights": ["...", "..."], "urls": ["...", "..."], "image_url": "..."}}], "total_articles": X, "sources": Y}}.
 
+Write all text content (overview, highlights) in Polish.
+
 Corpus: {corpus_json}
 """
 
