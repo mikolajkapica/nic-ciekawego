@@ -1,5 +1,6 @@
 import logging
 from typing import List, Dict
+from utils.article import Article
 
 import difflib
 
@@ -14,12 +15,6 @@ def build_corpus(articles: List[Dict]) -> List[Dict]:
     unique_articles = []
     used_titles = []
     for article in articles:
-        title = article['title']
-        # Check similarity with existing titles
-        is_duplicate = any(
-            difflib.SequenceMatcher(None, title, used_title).ratio() > 0.8
-            for used_title in used_titles
-        )
         if not is_duplicate:
             unique_articles.append(article)
             used_titles.append(title)

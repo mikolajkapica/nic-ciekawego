@@ -14,8 +14,7 @@ def format_email_body(
     version: str = "1.0.0",
 ) -> str:
     """Format the HTML email body from LLM summaries."""
-    top5 = summaries.get("top5", [])
-    rationale = summaries.get("rationale", "Brak racjonalizacji")
+    stories = summaries.get("stories", [])
 
     html = """
     <html>
@@ -34,10 +33,10 @@ def format_email_body(
         <h1>Top 5 Wieści Dnia: Podsumowanie z {current_date}</h1>
     """.format(current_date=current_date)
 
-    for i, summary in enumerate(top5, 1):
+    for i, summary in enumerate(stories, 1):
         overview = summary.get("overview", "")
         highlights = summary.get("highlights", [])
-        url = summary.get("url", "")
+        urls = summary.get("urls", [])
         image_url = summary.get("image_url", "")
         html += """
         <h2>{}. {}</h2>
@@ -50,22 +49,20 @@ def format_email_body(
         for highlight in highlights:
             html += "    <li>{}</li>\n".format(highlight)
         html += "        </ul>\n"
-        html += "        <p><strong>Źródło:</strong> <a href='{}'>{}</a></p>\n".format(
-            url, url
-        )
+        html += "        <p><strong>Źródła:</strong></p>\n"
+        for url in urls:
+            html += "        <p><a href='{}'>{}</a></p>\n".format(url, url)
 
     timestamp = pendulum.now("UTC").format("YYYY-MM-DD HH:mm:ss UTC")
     html += """
         <p><strong>Przetworzono łącznie {} artykułów z {} źródeł.</strong></p>
-        <p><strong>Racjonalizacja wyboru:</strong> {}</p>
         <div class="footer">
             <p>Script version: {}</p>
             <p>Generated at: {}</p>
-            <p><a href="mailto:unsubscribe@example.com?subject=Unsubscribe from Top 5 Wieści Dnia">Unsubscribe</a></p>
         </div>
     </body>
     </html>
-    """.format(total_articles, sources, rationale, version, timestamp)
+    """.format(total_articles, sources, version, timestamp)
 
-    logger.info("Formatted email body with %d top stories", len(top5))
+    logger.info("Formatted email body with %d top stories", len(stories))
     return html
