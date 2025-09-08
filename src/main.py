@@ -71,7 +71,7 @@ async def main(dry_run: bool = False):
                 logger.error(f"Failed to fetch feed {feeds[i]}: {raw_feed}")
                 continue
             category = feeds[i]["category"]
-            filtered = filter_by_date(raw_feed.entries)[:3]
+            filtered = filter_by_date(raw_feed.entries)
 
             for art in filtered:
                 try:
@@ -83,9 +83,6 @@ async def main(dry_run: bool = False):
                         text=translated,
                         url=art.link,
                         category=category,
-                    )
-                    logger.info(
-                        f"Article created successfully. Has __pydantic_fields_set__: {hasattr(validated_art, '__pydantic_fields_set__')}"
                     )
                     logger.debug(
                         f"Article type: {type(validated_art)}, dir keys: {list(dir(validated_art))[:10]}"
