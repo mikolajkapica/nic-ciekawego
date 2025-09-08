@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 PROMPT_TEMPLATE = """
-You are a neutral news analyst specializing in global affairs. Analyze the following articles corpus (JSON list with fields: title, content, url, pub_date). 
+You are a neutral news analyst specializing in global affairs. Analyze the following articles corpus (JSON list with fields: title, content, url, pub_date, image_url).
 
 Scoring Criteria (0-10 scale):
 - Relevance: Global impact and connection to current events (prioritize politics, economy, tech, culture, international conflicts).
@@ -29,9 +29,10 @@ Steps:
    - Overview: 1-2 neutral sentences summarizing the key event.
    - Highlights: 3-5 bullet points with facts only (no opinions, no hallucinations; stick to provided content).
    - URL: [original URL unchanged].
+   - Image URL: [original image_url unchanged if present, else empty string].
 5. Overall Rationale: Brief explanation in Polish for selection (e.g., "Wybrane ze względu na globalny wpływ i różnorodność tematów.").
 
-Safeguards: Be factual, neutral, avoid biases (political, cultural). If content is unclear, default to description. Output structured JSON: {{"top5": [{{"overview": "...", "highlights": ["...", "..."], "url": "..."}}], "rationale": "...", "total_articles": X, "sources": Y}}.
+Safeguards: Be factual, neutral, avoid biases (political, cultural). If content is unclear, default to description. Output structured JSON: {{"top5": [{{"overview": "...", "highlights": ["...", "..."], "url": "...", "image_url": "..."}}], "rationale": "...", "total_articles": X, "sources": Y}}.
 
 Corpus: {corpus_json}
 """

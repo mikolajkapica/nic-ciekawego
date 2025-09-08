@@ -38,10 +38,15 @@ def format_email_body(
         overview = summary.get("overview", "")
         highlights = summary.get("highlights", [])
         url = summary.get("url", "")
+        image_url = summary.get("image_url", "")
         html += """
         <h2>{}. {}</h2>
-        <ul>
         """.format(i, overview)
+        if image_url:
+            html += f'    <img src="{image_url}" alt="News Image" style="max-width:100%; height:auto; margin:10px 0;">\n'
+        html += """
+        <ul>
+        """
         for highlight in highlights:
             html += "    <li>{}</li>\n".format(highlight)
         html += "        </ul>\n"
