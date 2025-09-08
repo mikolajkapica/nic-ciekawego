@@ -2,7 +2,6 @@ import asyncio
 import calendar
 import logging
 import time
-from datetime import datetime
 from typing import List
 
 import feedparser
