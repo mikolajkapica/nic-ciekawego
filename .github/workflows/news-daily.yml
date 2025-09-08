@@ -3,6 +3,7 @@ name: Daily News Summarization
 on:
   schedule:
     - cron: '50 7 * * *'   # 07:50 UTC
+  workflow_dispatch:
 
 jobs:
   run:
