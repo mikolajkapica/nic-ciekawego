@@ -13,7 +13,7 @@ load_dotenv()
 
 logger = logging.getLogger(__name__)
 
-def _sync_send_email(body: str, recipients: List[str], sender: str, app_password: str, subject: str = "Top 5 Wieści Dnia") -> None:
+def _sync_send_email(body: str, recipients: List[str], sender: str, app_password: str, subject: str = "Wieści Dnia") -> None:
     """Synchronous email sending via Gmail SMTP."""
     if not recipients:
         raise ValueError("No recipients specified")
@@ -36,6 +36,6 @@ def _sync_send_email(body: str, recipients: List[str], sender: str, app_password
         logger.error(f"Email sending failed: {str(e)}")
         raise
 
-async def send_email(body: str, recipients: List[str], sender: str, app_password: str, subject: str = "Top 5 Wieści Dnia") -> None:
+async def send_email(body: str, recipients: List[str], sender: str, app_password: str, subject: str = "Wieści Dnia") -> None:
     """Async wrapper for email sending."""
     await asyncio.to_thread(_sync_send_email, body, recipients, sender, app_password, subject)

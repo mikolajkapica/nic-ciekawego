@@ -47,11 +47,16 @@ async def main(dry_run: bool = False):
             "OPENROUTER_API_KEY",
             "GMAIL_SENDER",
             "GMAIL_APP_PASSWORD",
+            "RECIPIENTS",
         ]
         env_vars = {k: os.getenv(k) for k in required_env}
         missing = [k for k, v in env_vars.items() if not v]
         if missing:
             raise ValueError(f"Missing environment variables: {missing}")
+
+        # Resolve recipients: ENV RECIPIENTS (comma-separated only)
+        recipients_env = os.getenv("RECIPIENTS")
+        recipients = [p.strip() for p in recipients_env.split(",") if p.strip()]
 
         # Step 1: Fetch and process articles
         feeds = config["rss_feeds"]
@@ -130,7 +135,7 @@ async def main(dry_run: bool = False):
             .format("D MMMM YYYY", locale="pl")
         )
         email_subject = config.get(
-            "email_subject", "Top 5 Wieści Dnia: Podsumowanie z {date}"
+            "email_subject", "Wieści Dnia: {date}"
         ).format(date=current_date)
         email_body = format_email_body(
             summaries,
@@ -143,7 +148,7 @@ async def main(dry_run: bool = False):
         if not dry_run:
             await send_email(
                 email_body,
-                config["recipients"],
+                recipients,
                 env_vars["GMAIL_SENDER"],
                 env_vars["GMAIL_APP_PASSWORD"],
                 email_subject,

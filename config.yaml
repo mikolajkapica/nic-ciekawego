@@ -8,20 +8,11 @@ rss_feeds:
   - url: https://wyborcza.pl/pub/rss/najnowsze_wyborcza.xml
     name: Gazeta Wyborcza
     category: poland
-  - url: https://www.tvp.info/tvp.info/rss+xml.php
-    name: TVP Info
-    category: poland
-  - url: https://www.rp.pl/rss_main
-    name: Rzeczpospolita
-    category: poland
   - url: https://www.newsweek.pl/.feed
     name: Newsweek Polska
     category: poland
   - url: https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
     name: New York Times
-    category: usa
-  - url: https://www.washingtonpost.com/arcio/rss/category/politics/?itid=lk_inline_manual_2
-    name: Washington Post Politics
     category: usa
   - url: http://rss.cnn.com/rss/edition.rss
     name: CNN
@@ -35,14 +26,8 @@ rss_feeds:
   - url: https://news.google.com/rss/search?q=site%3Areuters.com&hl=en-US&gl=US&ceid=US%3Aen
     name: Reuters
     category: usa
-  - url: https://apnews.com/index.rss
-    name: Associated Press
-    category: usa
   - url: https://www.pravda.com.ua/rss/
     name: Ukrainska Pravda
-    category: ukraine
-  - url: https://assets.censor.net/rss/censor.net/rss_uk_news.xml
-    name: Censor.NET
     category: ukraine
   - url: https://feeds.nos.nl/nosnieuwsalgemeen
     name: NOS Nieuws
@@ -54,11 +39,8 @@ rss_feeds:
     name: de Volkskrant
     category: netherlands
 
-recipients:
-  - johnsmith@gmail.com
-
 llm_model: openrouter/sonoma-sky-alpha
 
-email_subject: "Top 5 Wieści Dnia: Podsumowanie z {date}"
+email_subject: "Wieści Dnia: {date}"
 
 script_version: "1.0.0"
