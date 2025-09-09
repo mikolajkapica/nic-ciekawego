@@ -22,11 +22,11 @@ def load_config() -> dict:
 
 
 def _sync_translate_llm(text: str, model: str, api_key: str) -> str:
-    """Translate text to Polish using LLM via OpenRouter."""
+    """Translate text to English using LLM via OpenRouter."""
     if not text.strip():
         return text
 
-    prompt = f"Translate the following text to Polish. Provide only the translated text without any additional comments or explanations:\n\n{text}"
+    prompt = f"Translate the following text to English. Provide only the translated text without any additional comments or explanations:\n\n{text}"
 
     headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
     data = {
@@ -41,7 +41,7 @@ def _sync_translate_llm(text: str, model: str, api_key: str) -> str:
         response.raise_for_status()
         result = response.json()
         translated = result["choices"][0]["message"]["content"].strip()
-        logger.info(f"Translated via LLM: {len(text)} chars to Polish")
+        logger.info(f"Translated via LLM: {len(text)} chars to English")
         return translated
     except requests.HTTPError as e:
         logger.error(f"HTTP error: {e.response.status_code} - {e.response.text}")
@@ -52,12 +52,12 @@ def _sync_translate_llm(text: str, model: str, api_key: str) -> str:
         return text
 
 
-def _sync_translate_to_polish(text: str, model: str, api_key: str) -> str:
-    """Translate text to Polish using LLM."""
+def _sync_translate_to_english(text: str, model: str, api_key: str) -> str:
+    """Translate text to English using LLM."""
     return _sync_translate_llm(text, model, api_key)
 
 
-async def translate_to_polish(text: str) -> str:
+async def translate_to_english(text: str) -> str:
     """Async wrapper for translation using LLM."""
     config = load_config()
     model = config.get("llm_model", "sonoma-sky-alpha")
@@ -65,4 +65,4 @@ async def translate_to_polish(text: str) -> str:
     if not api_key or api_key == "your_openrouter_api_key_here":
         logger.error("OpenRouter API key not set")
         return text
-    return await asyncio.to_thread(_sync_translate_to_polish, text, model, api_key)
+    return await asyncio.to_thread(_sync_translate_to_english, text, model, api_key)

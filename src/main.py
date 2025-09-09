@@ -13,7 +13,7 @@ import yaml
 sys.path.append(".")
 
 from utils.fetch_rss import fetch_rss, filter_by_date
-from utils.translate import translate_to_polish
+from utils.translate import translate_to_english
 from utils.llm_summarize import llm_summarize_corpus
 from utils.format_email import format_email_body
 from utils.send_email import send_email
@@ -76,8 +76,8 @@ async def main(dry_run: bool = False):
             for art in filtered:
                 try:
                     translated = (
-                        await translate_to_polish(art.title + "\n\n" + art.summary)
-                        if category != "poland"
+                        await translate_to_english(art.title + "\n\n" + art.summary)
+                        if category != "usa"
                         else art.title + "\n\n" + art.summary
                     )
                     logger.info(f"About to create Article for {art.title[:50]}...")
