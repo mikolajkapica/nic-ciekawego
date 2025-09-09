@@ -75,8 +75,10 @@ async def main(dry_run: bool = False):
 
             for art in filtered:
                 try:
-                    translated = await translate_to_polish(
-                        art.title + "\n\n" + art.summary
+                    translated = (
+                        await translate_to_polish(art.title + "\n\n" + art.summary)
+                        if category != "poland"
+                        else art.title + "\n\n" + art.summary
                     )
                     logger.info(f"About to create Article for {art.title[:50]}...")
                     validated_art = Article(
@@ -131,9 +133,9 @@ async def main(dry_run: bool = False):
             .in_timezone("Europe/Warsaw")
             .format("D MMMM YYYY", locale="pl")
         )
-        email_subject = config.get(
-            "email_subject", "Wieści Dnia: {date}"
-        ).format(date=current_date)
+        email_subject = config.get("email_subject", "Wieści Dnia: {date}").format(
+            date=current_date
+        )
         email_body = format_email_body(
             summaries,
             current_date,
