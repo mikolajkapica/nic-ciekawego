@@ -1,8 +1,6 @@
 import asyncio
-import json
 import logging
 import os
-from typing import Optional
 
 import requests
 import yaml
@@ -35,9 +33,7 @@ def _sync_translate_llm(text: str, model: str, api_key: str) -> str:
     }
 
     try:
-        response = requests.post(
-            OPENROUTER_URL, headers=headers, json=data, timeout=60
-        )
+        response = requests.post(OPENROUTER_URL, headers=headers, json=data, timeout=60)
         response.raise_for_status()
         result = response.json()
         translated = result["choices"][0]["message"]["content"].strip()
