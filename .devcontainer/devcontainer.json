@@ -1,0 +1,32 @@
+{
+  "name": "nic-ciekawego-ocaml",
+  "dockerFile": "Dockerfile",
+  "remoteUser": "opam",
+  "workspaceFolder": "/workspaces/nic-ciekawego",
+  "updateRemoteUserUID": false,
+  "postCreateCommand": "opam update && cd ocaml && opam install . --deps-only -y && dune build",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "ocaml.sandbox": {
+          "kind": "opam",
+          "switch": null
+        },
+        "editor.formatOnSave": true,
+        "files.trimTrailingWhitespace": true
+      },
+      "extensions": [
+        "ocamllabs.ocaml-platform",
+        "ms-python.python",
+        "ms-azuretools.vscode-docker",
+        "streetsidesoftware.code-spell-checker"
+      ]
+    }
+  },
+  "features": {},
+  "mounts": [
+    "source=opam-root,target=/home/opam/.opam,type=volume"
+  ],
+  "forwardPorts": [],
+  "shutdownAction": "stopContainer"
+}

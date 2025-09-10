@@ -1,0 +1,29 @@
+(lang dune 3.14)
+
+(name news_summarizer)
+
+(generate_opam_files true)
+
+(package
+ (name news_summarizer)
+ (synopsis "Daily news summarizer (OCaml rewrite)")
+ (description
+  "Fetch RSS, translate, summarize with LLM, format HTML email, send via SMTP")
+ (depends
+  (ocaml
+   (>= 5.1))
+  cohttp-lwt-unix
+  yojson
+  lwt
+  ptime
+  yaml
+  fpath
+  logs
+  fmt
+  mrmime
+  colombe
+  emile
+  tls
+  ca-certs
+  ppx_deriving
+  ppx_deriving_yojson))

@@ -1,0 +1,30 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "Cohttp",
+    "Lwt",
+    "Yojson",
+    "Ptime",
+    "Yaml_unix",
+    "Yaml",
+    "Fpath",
+    "mrmime",
+    "colombe",
+    "emile",
+    "tls",
+    "ca-certs",
+    "yojson",
+    "ppx",
+    "Summarize",
+    "Rss",
+    "Rss_fetch",
+    "ptime",
+    "smtp"
+  ],
+  "ignorePaths": [
+    "_build",
+    "venv",
+    "**/node_modules/**"
+  ]
+}

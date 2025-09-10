@@ -39,7 +39,7 @@ rss_feeds:
     name: de Volkskrant
     category: netherlands
 
-llm_model: nvidia/llama-3.1-nemotron-ultra-253b-v1:free
+llm_model: nvidia/llama-3.1-nemotron-ultra-253b-v1
 
 email_subject: "Wieści Dnia: {date}"
 

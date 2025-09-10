@@ -1,0 +1,40 @@
+(executable
+ (name main)
+ (public_name news_summarizer)
+ ;; Only include the Main module here to avoid conflicts with library modules.
+ (modules main)
+ ;; Depend on the internal library instead of re-listing all external libs.
+ (libraries news_lib)
+ (preprocess
+  (pps ppx_deriving_yojson)))
+
+(library
+ (name news_lib)
+ (wrapped false)
+ (modules
+  Article
+  Config
+  Rss_fetch
+  Translate
+  Summarize
+  Format_email
+  Send_email
+  App)
+ (libraries
+  cohttp-lwt-unix
+  yojson
+  lwt
+  ptime
+  yaml
+  yaml.unix
+  fpath
+  logs
+  logs.fmt
+  fmt
+  mrmime
+  colombe
+  emile
+  tls
+  ca-certs)
+ (preprocess
+  (pps ppx_deriving_yojson)))
