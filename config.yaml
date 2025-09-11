@@ -39,7 +39,7 @@ rss_feeds:
     name: de Volkskrant
     category: netherlands
 
-llm_model: deepseek/deepseek-chat-v3.1:free
+llm_model: openrouter/sonoma-dusk-alpha
 
 email_subject: "Wieści Dnia: {date}"
 
